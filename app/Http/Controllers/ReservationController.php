@@ -8,7 +8,7 @@ use App\Reservation;
 class ReservationController extends Controller
 {
     public function index(){
-      $reservations = Reservation::all();
+      $reservations = Reservation::canview()->get();
       return view('reservations.index', ["reservations"=>$reservations]);
     }
 
@@ -22,7 +22,7 @@ class ReservationController extends Controller
     }
 
     public function show(Reservation $reservation){
-      return view('reservations.index', ["reservation"=>$reservation]);
+      return view('reservations.edit', ["reservation"=>$reservation]);
     }
 
     public function edit(Reservation $reservation){

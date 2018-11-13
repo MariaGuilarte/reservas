@@ -8,7 +8,7 @@ use App\Service;
 class ServiceController extends Controller
 {
     public function index(){
-      $services = Service::all();
+      $services = Service::canview()->get();
       return view('services.index', ["services"=>$services]);
     }
 

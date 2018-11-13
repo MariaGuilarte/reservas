@@ -17,11 +17,7 @@ Route::get('/', function () {
 
 
 Route::resources([
-  'enterprises' => 'EnterpriseController',
-  'reservations' => 'ReservationController',
   'roles' => 'RoleController',
-  'services' => 'ServiceController',
-  'categories' => 'CategoryController'
 ]);
 
 Route::get('/users', 'UserController@index')->name('users.index')->middleware('can:list,App\User');
@@ -72,7 +68,21 @@ Route::get('/enterprises/edit/{enterprise}', 'EnterpriseController@edit')->name(
 Route::put('/enterprises/update/{enterprise}', 'EnterpriseController@update')->name('enterprises.update')->middleware('can:update,enterprise');
 Route::delete('/enterprises/delete/{enterprise}', 'EnterpriseController@destroy')->name('enterprises.destroy')->middleware('can:destroy,enterprise');
 
+Route::get('/services', 'ServiceController@index')->name('services.index')->middleware('can:list,App\Service');
+Route::post('/services', 'ServiceController@store')->name('services.store')->middleware('can:store,App\Service');
+Route::get('/services/create', 'ServiceController@create')->name('services.create')->middleware('can:create,App\Service');
+Route::get('/services/{service}', 'ServiceController@show')->name('services.show')->middleware('can:view,service');
+Route::get('/services/edit/{service}', 'ServiceController@edit')->name('services.edit')->middleware('can:edit,service');
+Route::put('/services/update/{service}', 'ServiceController@update')->name('services.update')->middleware('can:update,service');
+Route::delete('/services/delete/{service}', 'ServiceController@destroy')->name('services.destroy')->middleware('can:destroy,service');
+
+Route::get('/reservations', 'ReservationController@index')->name('reservations.index')->middleware('can:list,App\Reservation');
+Route::post('/reservations', 'ReservationController@store')->name('reservations.store')->middleware('can:store,App\Reservation');
+Route::get('/reservations/create', 'ReservationController@create')->name('reservations.create')->middleware('can:create,App\Reservation');
+Route::get('/reservations/{reservation}', 'ReservationController@show')->name('reservations.show')->middleware('can:view,reservation');
+Route::get('/reservations/edit/{reservation}', 'ReservationController@edit')->name('reservations.edit')->middleware('can:edit,reservation');
+Route::put('/reservations/update/{reservation}', 'ReservationController@update')->name('reservations.update')->middleware('can:update,reservation');
+Route::delete('/reservations/delete/{reservation}', 'ReservationController@destroy')->name('reservations.destroy')->middleware('can:destroy,reservation');
 
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');

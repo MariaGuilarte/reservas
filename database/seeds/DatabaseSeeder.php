@@ -6,11 +6,6 @@ use App\Role;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
@@ -40,25 +35,48 @@ class DatabaseSeeder extends Seeder
           "description" => "Admin"
         ]);
 
-        $opUser = User::create([
-          "name" => "Operator user",
-          "email" => "opuser@gmail.com",
+        $adminUser = User::create([
+          "name" => "Admin",
+          "email" => "admin@gmail.com",
           "password" => bcrypt(123456),
-          "role_id" => 3
+          "role_id" => 5
         ]);
 
         $dirUser = User::create([
-          "name" => "Director user",
-          "email" => "diruser@gmail.com",
+          "name" => "Director",
+          "email" => "dir@gmail.com",
           "password" => bcrypt(123456),
           "role_id" => 4
         ]);
 
-        $adminUser = User::create([
-          "name" => "Admin user",
-          "email" => "adminuser@gmail.com",
+        $op1User = User::create([
+          "name" => "Operator 1",
+          "email" => "op1@gmail.com",
           "password" => bcrypt(123456),
-          "role_id" => 5
+          "created_by" => 1,
+          "role_id" => 3
+        ]);
+
+        $op2User = User::create([
+          "name" => "Operator 2",
+          "email" => "op2@gmail.com",
+          "password" => bcrypt(123456),
+          "created_by" => 2,
+          "role_id" => 3
+        ]);
+
+        $clientUser = User::create([
+          "name" => "Client",
+          "email" => "client@gmail.com",
+          "password" => bcrypt(123456),
+          "role_id" => 1
+        ]);
+
+        $proUser = User::create([
+          "name" => "Professional",
+          "email" => "pro@gmail.com",
+          "password" => bcrypt(123456),
+          "role_id" => 2
         ]);
     }
 }
