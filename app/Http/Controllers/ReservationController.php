@@ -8,33 +8,34 @@ use App\Reservation;
 class ReservationController extends Controller
 {
     public function index(){
-      return view('reservations.index');
+      $reservations = Reservation::all();
+      return view('reservations.index', ["reservations"=>$reservations]);
     }
 
     public function create(){
       return view('reservations.create');
     }
-    
+
     public function store(Request $request)
     {
         //
     }
 
     public function show(Reservation $reservation){
-      return view('reservations.index');
+      return view('reservations.index', ["reservation"=>$reservation]);
     }
 
     public function edit(Reservation $reservation){
-      return view('reservations.edit');
+      return view('reservations.edit', ["reservation"=>$reservation]);
     }
-    
+
     public function update(Request $request, Reservation $reservation)
     {
-      
+
     }
 
     public function destroy(Reservation $reservation)
     {
-      
+
     }
 }

@@ -26,6 +26,27 @@ class RouteServiceProvider extends ServiceProvider
         //
 
         parent::boot();
+
+        Route::bind('client', function ($value) {
+          return \App\User::where([
+              ['id',      '=', $value],
+              ['role_id', '=', 1]
+          ])->first() ?? abort(404);
+        });
+
+        Route::bind('professional', function ($value) {
+          return \App\User::where([
+              ['id',      '=', $value],
+              ['role_id', '=', 2]
+          ])->first() ?? abort(404);
+        });
+
+        Route::bind('operator', function ($value) {
+          return \App\User::where([
+              ['id',      '=', $value],
+              ['role_id', '=', 3]
+          ])->first() ?? abort(404);
+        });
     }
 
     /**
